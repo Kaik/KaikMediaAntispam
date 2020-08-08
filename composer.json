@@ -1,0 +1,35 @@
+{
+	"name" : "kaikmedia/antispam-module",
+	"version" : "1.0.0",        
+	"description" : "Module to provide various antispam protection",
+	"type" : "zikula-module",
+	"license" : "LGPL-3.0+",
+	"authors" : [{
+			"name" : "Kaik",
+			"homepage" : "http://kaikmedia.com/",
+			"email" : "contact@kaikmedia.com"
+		}
+	],
+	"autoload" : {
+		"psr-4" : {
+			"Kaikmedia\\AntispamModule\\" : ""
+		}
+	},
+	"require" : {
+		"php" : ">5.3.3"
+	},
+	"extra" : {
+		"zikula" : {
+			"core-compatibility" : ">=2.0.0",                   
+			"class" : "Kaikmedia\\AntispamModule\\KaikmediaAntispamModule",
+			"displayname" : "Antispam",
+			"url" : "Antispam",
+			"capabilities" : {
+				"admin" : {"route" : "kaikmediaantispammodule_admin_index"}
+			},
+			"securityschema" : {
+				"KaikmediaAntispamModule::" : "::"
+			}                       
+		}
+	}
+}
