@@ -1,0 +1,30 @@
+{# default admin/manager template #}
+{% extends 'KaikmediaAntispamModule:Base:admin.html.twig' %}
+{% block header %}
+    {% set settings='settings' %}
+    {{ parent() }}
+    {#{ articleAddAsset('stylesheet', zasset('@KaikmediaAntispamModule:css/inbox.css')) }#}
+{% endblock %} 
+{% block title %}
+    {% set title_icon="<i class='fa fa-user-secret'></i>" %}
+    {% set title=__('Antispam') %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div id="km_antispam_admin_index" class="col-md-12 clearfix">    
+  
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+    {#{ include('KaikmediaAntispamModule:Base:modal.html.twig') }#}
+    {#{ articleAddAsset('javascript', zasset('@KaikmediaAntispamModule:js/manager.js')) }}
+    <script>
+    (function($) {
+            $(function(){
+                Manager.init();  
+            });
+    })(jQuery);
+    </script>
+    {#{ dump() }#}
+{% endblock %}

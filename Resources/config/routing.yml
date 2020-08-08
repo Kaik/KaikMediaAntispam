@@ -1,0 +1,3 @@
+kaikmediaantispammodule:
+   resource: "@KaikmediaAntispamModule/Controller"
+   type:     annotation

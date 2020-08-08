@@ -1,0 +1,27 @@
+services:
+# Basics
+
+    kaikmedia_antispam_module.link_container:
+        class: Kaikmedia\AntispamModule\Container\LinkContainer
+        arguments:
+          - "@translator.default"
+          - "@router"
+          - "@kaikmedia_antispam_module.access_manager"
+          - "@=service('zikula_extensions_module.api.variable').get('KaikmediaAntispamModule', 'enablecategorization', true)"
+        tags:
+          - { name: zikula.link_container }
+
+#Managers
+
+    kaikmedia_antispam_module.access_manager:
+        class: Kaikmedia\AntispamModule\Security\AccessManager
+        arguments: 
+          - "@request_stack"
+          - "@translator.default"
+          - "@zikula_users_module.current_user"          
+          - "@zikula_permissions_module.api.permission"
+
+# HELPERS
+
+# FIELDS
+
