@@ -1,0 +1,20 @@
+{% for field in fields %}
+    <label class="ant_user_form_label" for="ant_your_{{ field }}"></label>
+    <input class="ant_user_form_field" autocomplete="{{ field }}-level333" type="text" id="ant_your_{{ field }}" name="ant_your_{{ field }}" placeholder="Your {{ field }} here">
+{% endfor %}
+{% set formCss %}
+        <style>
+            .ant_user_form_label,
+            .ant_user_form_field
+            {
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 0;
+                width: 0;
+                z-index: -1;
+            }
+        </style>
+    {% endset %}
+{{ pageAddAsset('header', formCss) }}

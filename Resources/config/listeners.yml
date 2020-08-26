@@ -1,0 +1,6 @@
+services:
+  kaikmedia_antispam_module.redirect_bot_exception_listener:
+      class: Kaikmedia\AntispamModule\Listener\RedirectBotExceptionListener
+      tags:
+          - { name: kernel.event_listener, event: kernel.exception }
+

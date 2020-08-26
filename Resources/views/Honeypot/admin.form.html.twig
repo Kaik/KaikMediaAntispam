@@ -1,0 +1,50 @@
+{# preferences #}
+{% extends 'KaikmediaAntispamModule:Base:admin.html.twig' %}
+{% block header %}
+    {% set settings='settings' %}
+    {{ parent() }}
+{% endblock %} 
+{% block title %}
+    {% set title_icon="<i class='fa fa-user-secret'></i>" %}
+    {% set title=__('Honeypot Antispam') %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div id="km_antispam_admin_honeypot" class="col-md-12 clearfix">    
+        {% form_theme form with [
+            'ZikulaFormExtensionBundle:Form:bootstrap_3_zikula_admin_layout.html.twig',
+            'ZikulaFormExtensionBundle:Form:form_div_layout.html.twig'
+        ] %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <fieldset>
+            <legend>{{ __('Enable Honeypot') }}</legend>
+            {{ form_row(form.honeypot_enabled) }}
+            {{ form_row(form.honeypot_fields) }}
+            <div class="form-group">
+                <div class="col-sm-3">
+        
+                </div>
+                <div class="col-sm-9">
+                    <p class="help">
+                        {{ __('Comma separated list of fields.') }}
+                    </p>
+                    <p class="help">
+                        {{ __('Honeypot works by adding hidden fields on form. Real people will not fill those fields but bots might.') }}
+                        {{ __('All fields are prefixed so there will be no conflict with real fields.') }}
+                        {{ __('It is advised to use fields names like website, url, name, info, bio, contact, name, surname.') }}
+                    </p>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'},  'label': __('Save')}) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

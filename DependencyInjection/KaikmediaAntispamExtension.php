@@ -35,5 +35,6 @@ class KaikmediaAntispamExtension extends Extension
 
         $loader->load('services.yml');
         $loader->load('hooks.yml');
+        $loader->load('listeners.yml');
     }
 }

@@ -92,49 +92,35 @@ class LinkContainer implements LinkContainerInterface
         }
         if ($this->accessManager->hasPermission(ACCESS_ADMIN, false)) {
             $links[] = [
-                'url' => $this->router->generate('kaikmediaantispammodule_admin_index'),
-                'text' => $this->translator->__('Banned usernames'),
-                'title' => $this->translator->__('Banned usernames'),
+                'url' => $this->router->generate('kaikmediaantispammodule_admin_banned'),
+                'text' => $this->translator->__('Banned'),
+                'title' => $this->translator->__('Banned'),
                 'icon' => 'info'];
         }
         if ($this->accessManager->hasPermission(ACCESS_ADMIN, false)) {
             $links[] = [
-                'url' => $this->router->generate('kaikmediaantispammodule_admin_index'),
-                'text' => $this->translator->__('Banned emails/domains'),
-                'title' => $this->translator->__('Banned emails/domains'),
-                'icon' => 'info'];
-        }
-        if ($this->accessManager->hasPermission(ACCESS_ADMIN, false)) {
-            $links[] = [
-                'url' => $this->router->generate('kaikmediaantispammodule_admin_index'),
-                'text' => $this->translator->__('Banned user agents'),
-                'title' => $this->translator->__('Banned user agents'),
-                'icon' => 'info'];
-        }
-        if ($this->accessManager->hasPermission(ACCESS_ADMIN, false)) {
-            $links[] = [
-                'url' => $this->router->generate('kaikmediaantispammodule_admin_index'),
+                'url' => $this->router->generate('kaikmediaantispammodule_admin_question'),
                 'text' => $this->translator->__('Spam protection question'),
                 'title' => $this->translator->__('Spam protection question'),
                 'icon' => 'info'];
         }
         if ($this->accessManager->hasPermission(ACCESS_ADMIN, false)) {
             $links[] = [
-                'url' => $this->router->generate('kaikmediaantispammodule_admin_index'),
+                'url' => $this->router->generate('kaikmediaantispammodule_admin_captcha'),
                 'text' => $this->translator->__('Captcha'),
                 'title' => $this->translator->__('Captcha'),
                 'icon' => 'info'];
         }
         if ($this->accessManager->hasPermission(ACCESS_ADMIN, false)) {
             $links[] = [
-                'url' => $this->router->generate('kaikmediaantispammodule_admin_index'),
+                'url' => $this->router->generate('kaikmediaantispammodule_admin_recaptcha'),
                 'text' => $this->translator->__('ReCaptcha'),
                 'title' => $this->translator->__('ReCaptcha'),
                 'icon' => 'info'];
         }
         if ($this->accessManager->hasPermission(ACCESS_ADMIN, false)) {
             $links[] = [
-                'url' => $this->router->generate('kaikmediaantispammodule_admin_index'),
+                'url' => $this->router->generate('kaikmediaantispammodule_admin_honeypot'),
                 'text' => $this->translator->__('Honeypot'),
                 'title' => $this->translator->__('Honeypot'),
                 'icon' => 'info'];

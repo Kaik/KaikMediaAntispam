@@ -1,0 +1,35 @@
+{# preferences #}
+{% extends 'KaikmediaAntispamModule:Base:admin.html.twig' %}
+{% block header %}
+    {% set settings='settings' %}
+    {{ parent() }}
+{% endblock %} 
+{% block title %}
+    {% set title_icon="<i class='fa fa-user-secret'></i>" %}
+    {% set title=__('Captcha Antispam') %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div id="km_antispam_admin_captcha" class="col-md-12 clearfix">    
+        {% form_theme form with [
+            'ZikulaFormExtensionBundle:Form:bootstrap_3_zikula_admin_layout.html.twig',
+            'ZikulaFormExtensionBundle:Form:form_div_layout.html.twig'
+        ] %}
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <fieldset>
+                <legend>{{ __('Enable captcha') }}</legend>
+                {{ form_row(form.captcha_enabled) }}
+            </fieldset>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'},  'label': __('Save')}) }}
+                    {# {{ form_widget(form.cancel) }} #}
+                </div>
+            </div>
+            {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,46 @@
+{# preferences #}
+{% extends 'KaikmediaAntispamModule:Base:admin.html.twig' %}
+{% block header %}
+    {% set settings='settings' %}
+    {{ parent() }}
+{% endblock %} 
+{% block title %}
+    {% set title_icon="<i class='fa fa-user-secret'></i>" %}
+    {% set title=__('Banned Antispam') %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div id="km_antispam_admin_banned" class="col-md-12 clearfix">    
+    {% form_theme form with [
+        'ZikulaFormExtensionBundle:Form:bootstrap_3_zikula_admin_layout.html.twig',
+        'ZikulaFormExtensionBundle:Form:form_div_layout.html.twig'
+    ] %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <fieldset>
+            <legend>{{ __('Banned usernames') }}</legend>
+            {{ form_row(form.banned_usernames_enabled) }}
+            {{ form_row(form.banned_usernames) }}
+        </fieldset>
+        <fieldset>
+            <legend>{{ __('Banned') }}</legend>
+            {{ form_row(form.banned_emails_enabled) }}
+            {{ form_row(form.banned_emails) }}
+        </fieldset>
+        <fieldset>
+            <legend>{{ __('Further settings') }}</legend>
+            {{ form_row(form.banned_domains_enabled) }}
+            {{ form_row(form.banned_domains) }}
+        </fieldset>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'},  'label': __('Save')}) }}
+                {# {{ form_widget(form.cancel) }} #}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

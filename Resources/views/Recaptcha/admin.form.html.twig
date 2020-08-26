@@ -1,0 +1,37 @@
+{# preferences #}
+{% extends 'KaikmediaAntispamModule:Base:admin.html.twig' %}
+{% block header %}
+    {% set settings='settings' %}
+    {{ parent() }}
+{% endblock %} 
+{% block title %}
+    {% set title_icon="<i class='fa fa-user-secret'></i>" %}
+    {% set title=__('ReCaptcha Antispam') %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    <div id="km_antispam_admin_recaptcha" class="col-md-12 clearfix">    
+        {% form_theme form with [
+            'ZikulaFormExtensionBundle:Form:bootstrap_3_zikula_admin_layout.html.twig',
+            'ZikulaFormExtensionBundle:Form:form_div_layout.html.twig'
+        ] %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <fieldset>
+            <legend>{{ __('Enable Google ReCaptcha') }}</legend>
+            {{ form_row(form.recaptcha_enabled) }}
+            {{ form_row(form.recaptcha_sitekey) }}
+            {{ form_row(form.recaptcha_secretkey) }}
+        </fieldset>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'},  'label': __('Save')}) }}
+                {# {{ form_widget(form.cancel) }} #}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

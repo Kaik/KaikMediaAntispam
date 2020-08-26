@@ -1,4 +1,4 @@
-{# default admin/manager template #}
+{# preferences #}
 {% extends 'KaikmediaAntispamModule:Base:admin.html.twig' %}
 {% block header %}
     {% set settings='settings' %}
@@ -6,11 +6,11 @@
 {% endblock %} 
 {% block title %}
     {% set title_icon="<i class='fa fa-user-secret'></i>" %}
-    {% set title=__('Admin Antispam') %}
+    {% set title=__('Preferences Antispam') %}
     {{ parent() }}
 {% endblock %}
 {% block content %}
-    <div id="km_antispam_admin_index" class="col-md-12 clearfix">    
+    <div id="km_antispam_admin_preferences" class="col-md-12 clearfix">    
   
     </div>
 {% endblock %}

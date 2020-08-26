@@ -1,0 +1,25 @@
+services:
+
+    kaikmedia_antispam_module.hook_provider.ui_hooks.honeypot:
+        class: Kaikmedia\AntispamModule\HookProvider\HoneypotUiHookProvider
+        arguments:
+            - "@translator.default"
+            - "@session"
+            - "@request_stack"
+            - "@router"
+            - "@templating"
+            - "@zikula_extensions_module.api.variable"                        
+        tags:
+            - { name: zikula.hook_provider, areaName: 'provider.kaikmediaantispammodule.ui_hooks.honeypot' }        
+
+    kaikmedia_antispam_module.hook_provider.ui_hooks.recaptcha:
+        class: Kaikmedia\AntispamModule\HookProvider\ReCaptchaUiHookProvider
+        arguments:
+            - "@translator.default"
+            - "@session"
+            - "@request_stack"
+            - "@router"
+            - "@templating"
+            - "@zikula_extensions_module.api.variable"                        
+        tags:
+            - { name: zikula.hook_provider, areaName: 'provider.kaikmediaantispammodule.ui_hooks.recaptcha' }
