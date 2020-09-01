@@ -277,7 +277,7 @@ class AdminController extends AbstractController
 
         $settings = $this->getVars();
         $formBuilder = $this->get('form.factory')
-            ->createBuilder(AdminPreferencesType::class, $settings)
+            ->createBuilder(PreferencesType::class, $settings)
             // ->setMethod('POST')
         ;
         $formBuilder
