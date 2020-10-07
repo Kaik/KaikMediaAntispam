@@ -135,8 +135,14 @@ class ReCaptchaUiHookProvider implements HookProviderInterface
     public function edit(DisplayHook $hook)
     {
         if ($this->enabled) {
+            $error = false;
+            if ($this->requestStack->getCurrentRequest()->getMethod() === 'POST') {
+                $data = $this->requestStack->getCurrentRequest()->request->all();
+                $error = !$this->isValid($data);
+            }
             $content = $this->renderEngine->render('KaikmediaAntispamModule:Recaptcha:hook.edit.html.twig', [
-                'sitekey' => $this->sitekey
+                'sitekey' => $this->sitekey,
+                'error' => $error
             ]);
             $hook->setResponse(new DisplayHookResponse('provider.kaikmediaantispammodule.ui_hooks.recaptcha', $content));
         }
@@ -146,8 +152,7 @@ class ReCaptchaUiHookProvider implements HookProviderInterface
     {
         if ($this->enabled) {
             $data = $this->requestStack->getCurrentRequest()->request->all();
-            $captcha = isset($data['g-recaptcha-response']) ? $data['g-recaptcha-response'] : false;
-            if (!$captcha) {
+            if (!$this->isValid($data)) {
                 $error = $this->translator->__("Please click on a box next to 'I'm not a robot' text");
                 // below commented code works only with symfony forms not custom "external" fields
                 // $response = new ValidationResponse('g-recaptcha-response', $data['g-recaptcha-response']);
@@ -159,7 +164,7 @@ class ReCaptchaUiHookProvider implements HookProviderInterface
             }
 
             // post request to server
-            $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($this->secretkey) .  '&response=' . urlencode($captcha);
+            $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($this->secretkey) .  '&response=' . urlencode($data['g-recaptcha-response']);
             $response = file_get_contents($url);
             $responseKeys = json_decode($response, true);
             // should return JSON with success as true
@@ -167,6 +172,18 @@ class ReCaptchaUiHookProvider implements HookProviderInterface
                 throw new RedirectBotException(
                     new RedirectResponse($this->router->generate('kaikmediaantispammodule_registered_registered', [], RouterInterface::ABSOLUTE_URL))
                 );
+            }
+        }
+
+        return true;
+    }
+
+    private function isValid($data)
+    {
+        if ($this->enabled) {
+            $captcha = isset($data['g-recaptcha-response']) ? $data['g-recaptcha-response'] : false;
+            if (!$captcha) {
+                return false;
             }
         }
 
