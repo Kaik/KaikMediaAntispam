@@ -155,9 +155,9 @@ class ReCaptchaUiHookProvider implements HookProviderInterface
             if (!$this->isValid($data)) {
                 $error = $this->translator->__("Please click on a box next to 'I'm not a robot' text");
                 // below commented code works only with symfony forms not custom "external" fields
-                // $response = new ValidationResponse('g-recaptcha-response', $data['g-recaptcha-response']);
-                // $response->addError('g-recaptcha-response', $error);
-                // $hook->setValidator('provider.kaikmediaantispammodule.ui_hooks.recaptcha', $response);
+                $response = new ValidationResponse('g-recaptcha-response', $data['g-recaptcha-response']);
+                $response->addError('g-recaptcha-response', $error);
+                $hook->setValidator('provider.kaikmediaantispammodule.ui_hooks.recaptcha', $response);
                 $this->session->getFlashBag()->add('error', $error);
 
                 return false;
